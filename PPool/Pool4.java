@@ -32,11 +32,12 @@ public class Pool4 extends Pool {//kids cannot enter if there are instructors wa
         while (kids > ki * (intstructor - 1)){
             log.waitingToRest();
             insWaitingToRest++;
+            notifyAll();
             wait();
+            insWaitingToRest--;
         }
         intstructor--;
         log.resting();
         notifyAll();
-        insWaitingToRest--;
     }
 }
