@@ -31,8 +31,8 @@ public class Pool4 extends Pool {//kids cannot enter if there are instructors wa
     }
     public synchronized void instructorRests() throws InterruptedException {
         while (kids > ki * (intstructor - 1)){
-            insWaitingToRest = true;
             log.waitingToRest();
+            insWaitingToRest = true;
             wait();
         }
         intstructor--;
