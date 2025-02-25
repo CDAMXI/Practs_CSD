@@ -1,14 +1,13 @@
 // CSD feb 2013 Juansa Sendra
 
 public class Pool4 extends Pool {//kids cannot enter if there are instructors waiting to exit
-    private int intstructor, kids, ki, cap;
-    private boolean insWaitingToRest;
+    private int intstructor, kids, ki, cap, insWaitingToRest;
     public synchronized void init(int ki, int cap){
         this.ki = ki;
         this.cap = cap;
     }
     public synchronized void kidSwims() throws InterruptedException{
-        while(intstructor==0 || kids >= ki * intstructor || intstructor + kids >= cap || insWaitingToRest){
+        while(intstructor==0 || kids >= ki * intstructor || intstructor + kids >= cap || insWaitingToRest != 0){
             log.waitingToSwim();
             wait();
         }
@@ -32,12 +31,12 @@ public class Pool4 extends Pool {//kids cannot enter if there are instructors wa
     public synchronized void instructorRests() throws InterruptedException {
         while (kids > ki * (intstructor - 1)){
             log.waitingToRest();
-            insWaitingToRest = true;
+            insWaitingToRest++;
             wait();
         }
         intstructor--;
         log.resting();
         notifyAll();
-        insWaitingToRest = false;
+        insWaitingToRest--;
     }
 }
