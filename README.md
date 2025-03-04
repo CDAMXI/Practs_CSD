@@ -30,4 +30,7 @@ Si usas un IDE como IntelliJ IDEA o Eclipse:
 - Asegúrate de que la configuración del SDK de Java esté correctamente establecida.
 - Ejecuta las clases con main() directamente desde el IDE.
 
-📌 **Nota:** Si alguna práctica requiere configuración adicional, se incluirán instrucciones específicas en su respectivo directorio.
+📌 **Nota:** 
+- Si alguna práctica requiere configuración adicional, se incluirán instrucciones específicas en su respectivo directorio.
+
+⚠️ **Importante:** No se podrá usar BlueJ directamente, ya que este IDE maneja los archivos de manera distinta. BlueJ genera archivos .class en su estructura de carpetas automáticamente, mientras que en este repositorio solo se incluyen los archivos .java. Para ejecutar las prácticas correctamente, se recomienda utilizar IntelliJ IDEA, Eclipse, VSCode o la línea de comandos.
