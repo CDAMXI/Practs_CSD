@@ -20,7 +20,7 @@ class StateManager {
         stateList = (DefaultListModel<State>) states.getModel();
         // Set initial state
         fork= new int[5]; for (int i=0; i<5; i++) fdrop(i); //init. free
-        final State ne = new State();
+        final State ne = new StatePhilo();
         lastState = ne;
         // Initialize state list in the Event Dispatcher Thread
         SwingUtilities.invokeLater(new Runnable() {
@@ -61,7 +61,7 @@ class StateManager {
         if (lastState.get(x)==n) return; //skip duplicates
         boolean[] f=new boolean[5]; 
         for(int i=0; i<5; i++) f[i]=free(i);
-        final State ne = new State(lastState,x,n,f);
+        final State ne = new StatePhilo(lastState,x,n,f);
         lastState = ne;
         checkDeadlock(ne);
         // Update state list in the Event Dispatcher Thread

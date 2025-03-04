@@ -5,7 +5,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-class StateRenderer extends JLabel implements ListCellRenderer<State> {
+class StateRendererPhilo extends JLabel implements ListCellRenderer<State> {
     private static final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
     public StateRenderer() {setOpaque(true);} 
     public Component getListCellRendererComponent(

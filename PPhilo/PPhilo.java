@@ -98,7 +98,7 @@ public class PPhilo extends JPanel implements ActionListener {
 
         states=new DefaultListModel<State>(); 
         text = new JList<State>(states);
-        box = new Box();
+        box = new BoxPhilo();
         text.setCellRenderer(new StateRenderer());
         text.setVisibleRowCount(30);
         text.addListSelectionListener(new ListSelectionListener() {
