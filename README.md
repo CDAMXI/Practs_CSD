@@ -5,7 +5,7 @@ Este repositorio contiene todas las prácticas de JAVA relacionadas con la asign
 🔗 **Repositorio:** [Practs_CSD](https://github.com/CDAMXI/Practs_CSD.git)  
 
 ## 📂 Prácticas Incluidas  
-✅ **Práctica 1:** Introducción a la concurrencia en Java  
+✅ **Práctica 1:** Piscina  
 ✅ **Práctica 2:** Uso de hilos y sincronización  
 ✅ **Práctica 3:** Comunicación entre procesos  
 ✅ **Práctica 4:** Programación con monitores  
