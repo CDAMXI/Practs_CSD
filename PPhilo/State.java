@@ -15,9 +15,9 @@ public class State {
         for (int i=4; i>=0; i--) sb.append(s.substring(3*e[i],3*e[i]+3));
         return sb.toString();
     }
-    public void draw(Box b) {b.State(this);}
+    public void draw(Box b) {b.state(this);}
     public int get(int i) {return e[i];}
-    public boolean free(int i) {return f[i];}
+    public boolean free(int i){return f[i];}
 }
 
 
