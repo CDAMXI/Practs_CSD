@@ -51,7 +51,6 @@ class StateManager {
     private void notMyR(String f, int x) 		{pre(f,!myR(x),x+" right fork is yours");}
     private void notMyL(String f, int x) 		{pre(f,!myL(x),x+" left fork is yours");}
     private void notBothFree(String f, int x) 	{pre(f,!free(R(x))||!free(L(x)),x+" both forks are free");}
-    @SuppressWarnings("unused")
     private void ownerR(String f, int x) 		{pre(f,myR(x),x+" is not the owner of right fork");}
     private void ownerL(String f, int x) 		{pre(f,myL(x),x+" is not the owner of left fork");}
 
