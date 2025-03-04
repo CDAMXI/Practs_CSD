@@ -19,15 +19,15 @@ Este repositorio contiene todas las prácticas de JAVA relacionadas con la asign
 git clone https://github.com/CDAMXI/Practs_CSD.git
 cd Practs_CSD
 ```
-##2️⃣Compilar los archivos Java
+### 2️⃣Compilar los archivos Java
 ```bash
 javac NombreDelArchivo.java
 ```
-##3️⃣ Ejecutar el programa
+### 3️⃣ Ejecutar el programa
 ```bash
 java NombreDelArchivo
 ```
-##4️⃣ Usar un IDE (Opcional)
+### 4️⃣ Usar un IDE (Opcional)
 Si usas un IDE como IntelliJ IDEA o Eclipse:
 - Importa el proyecto como un proyecto Java.
 - Asegúrate de que la configuración del SDK de Java esté correctamente establecida.
