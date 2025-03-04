@@ -4,14 +4,14 @@
 
 import java.awt.*;
 
-public class BoxPhilo extends Canvas {
+public class Box extends Canvas {
     final int R=90, r=30;
     final double PI=Math.PI;
     double[] dx, dy;
     State e;
 
-    public BoxPhilo() {
-        dx=new double[20]; dy=new double[20]; e = new StatePhilo();
+    public Box() {
+        dx=new double[20]; dy=new double[20]; e= new State();
         for (int i=0; i<20; i++) {double x=(PI*i)/10; dx[i]=Math.cos(x); dy[i]=Math.sin(x);}
     }
     private int px(int d, int i) {return (int)Math.floor(3*R+d*dx[i]);}

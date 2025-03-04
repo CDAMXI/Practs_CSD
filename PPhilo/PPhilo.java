@@ -20,53 +20,53 @@ public class PPhilo extends JPanel implements ActionListener {
         Thread[] philo=new Philo[5];
         Table t; 
         switch (type) {
-        case 0: 
-            t = new RegularTable(sman);
-            for (i=0; i<5; i++) philo[i]=new Philo(i,cycles,delay,t); 
-            break;
-        case 1: 
-            System.out.println("Assimetry (last/but last).");
-            t = new RegularTable(sman);
-            for (i=0; i<5; i++){
-                if(i < 4){philo[i] = new Philo(i,cycles,delay,t);}
-                else{philo[i] = new LefthandedPhilo(i,cycles,delay,t);}
-            }  
-            break;
-        case 2: 
-            System.out.println("Assimetry (even/odd).");
-            t = new RegularTable(sman);
-            for (i=0; i<5; i++){
-                if(i % 2 == 0){philo[i] = new Philo(i,cycles,delay,t);}
-                else{philo[i] = new LefthandedPhilo(i,cycles,delay,t);}
-            } 
-            break;
-        case 3: 
-            System.out.println("Both or None.");
-            t = new RegularTable(sman);
-            for (i=0; i<5; i++){
-                philo[i] = new Philo(i,cycles,delay,t);
-                philo[i] = new LefthandedPhilo(i,cycles,delay,t);
-            }
-            break;
-        case 4: 
-            System.out.println("Limited capacity Dining Room.");
-            t = new BothOrNoneTable(sman);
-            for (i=0; i<5; i++){philo[i] = new LimitedPhilo(i,cycles,delay,t);}
-            break;
+            case 0: 
+                t = new RegularTable(sman);
+                for (i=0; i<5; i++){philo[i]=new Philo(i,cycles,delay,t);}  
+                break;
+            case 1: 
+                System.out.println("Assimetry (last/but last).");
+                t = new RegularTable(sman);
+                for (i=0; i<5; i++){
+                    if(i < 4){philo[i] = new Philo(i,cycles,delay,t);}
+                    else{philo[i] = new LefthandedPhilo(i,cycles,delay,t);}
+                }  
+                break;
+            case 2: 
+                System.out.println("Assimetry (even/odd).");
+                t = new RegularTable(sman);
+                for (i=0; i<5; i++){
+                    if(i % 2 == 0){philo[i] = new Philo(i,cycles,delay,t);}
+                    else{philo[i] = new LefthandedPhilo(i,cycles,delay,t);}
+                } 
+                break;
+            case 3: 
+                System.out.println("Both or None.");
+                t = new RegularTable(sman);
+                for (i=0; i<5; i++){
+                    philo[i] = new Philo(i,cycles,delay,t);
+                    philo[i] = new LefthandedPhilo(i,cycles,delay,t);
+                }
+                break;
+            case 4: 
+                System.out.println("Limited capacity Dining Room.");
+                t = new BothOrNoneTable(sman);
+                for (i=0; i<5; i++){philo[i] = new LimitedPhilo(i,cycles,delay,t);}
+                break;
         }
-        for (i=0; i<5; i++) philo[i].start();
+        
+        for (i=0; i<5; i++){philo[i].start();}
         
         // Wait until the end of the simulation
         sman.await();
         System.out.println(sman.deadlock()?" DEADLOCK":"   OK");
         
-    	// If deadlock, interrupt all the philosophers 
-        if (sman.deadlock())
-        	for (i=0; i<5; i++) philo[i].interrupt();
+        // If deadlock, interrupt all the philosophers 
+        if (sman.deadlock()){for (i=0; i<5; i++){philo[i].interrupt();}}
         
         // Wait for the philosophers to finish
         try {
-            for (i=0; i<5; i++) philo[i].join();
+            for (i=0; i<5; i++){philo[i].join();}
         }
         catch (Exception e) {e.printStackTrace();}
 
@@ -98,7 +98,7 @@ public class PPhilo extends JPanel implements ActionListener {
 
         states=new DefaultListModel<State>(); 
         text = new JList<State>(states);
-        box = new BoxPhilo();
+        box = new Box();
         text.setCellRenderer(new StateRenderer());
         text.setVisibleRowCount(30);
         text.addListSelectionListener(new ListSelectionListener() {
@@ -133,14 +133,14 @@ public class PPhilo extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-    	delay=integer(args,0,10,1,10);
-    	SwingUtilities.invokeLater(new Runnable() {
-    		public void run() {
-    			JFrame frame = new JFrame("CSD: 5 Philosophers");
-    			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    			frame.setContentPane(new PPhilo());
-    			frame.pack(); frame.setVisible(true);
-    		}
-    	});
+        delay=integer(args,0,10,1,10);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JFrame frame = new JFrame("CSD: 5 Philosophers");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setContentPane(new PPhilo());
+                frame.pack(); frame.setVisible(true);
+            }
+        });
     }
 }
