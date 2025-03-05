@@ -37,7 +37,7 @@ Si prefieres usar **BlueJ** para ejecutar las prácticas, sigue estos pasos:
 3. Compilar el código:
 - Haz clic derecho sobre la clase y selecciona Compilar.
 - O usa el atajo de teclado:
--   ** Windows/Linux:** Ctrl + K
+-   **Windows/Linux:** Ctrl + K
 -   **macOS:** Cmd + K
 
 4. Ejecutar el programa:
