@@ -48,5 +48,3 @@ Si prefieres usar **BlueJ** para ejecutar las prácticas, sigue estos pasos:
 
 📌 **Nota:** 
 - Si alguna práctica requiere configuración adicional, se incluirán instrucciones específicas en su respectivo directorio.
-
-⚠️ **Importante:** No se podrá usar BlueJ directamente, ya que este IDE maneja los archivos de manera distinta. BlueJ genera archivos ```.class``` en su estructura de carpetas automáticamente, mientras que en este repositorio solo se incluyen los archivos ```.java```. Para ejecutar las prácticas correctamente utilizando BlueJ, copia y pega los códigos en las clases, que tendrás que crear, compila, dando al botón derecho, compilar, o haciendo CTRL + k, y luego puedes ejecutar el código.
