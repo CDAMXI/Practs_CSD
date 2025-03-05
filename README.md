@@ -24,7 +24,7 @@ javac NombreDelArchivo.java
 ```bash
 java NombreDelArchivo
 ```
-### 4️⃣ Usar un IDE [Distinto a BlueJ]
+### 4️⃣ Usar un IDE (Distinto a BlueJ)
 Si usas un IDE como IntelliJ IDEA o Eclipse:
 - Importa el proyecto como un proyecto Java.
 - Asegúrate de que la configuración del SDK de Java esté correctamente establecida.
