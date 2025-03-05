@@ -6,6 +6,7 @@ Este repositorio contiene todas las prácticas de JAVA relacionadas con la asign
 
 ## 📂 Prácticas Incluidas  
 ✅ **Práctica 1:** Piscina  (2 sesiones)
+
 ✅ **Práctica 2:** Problema de los 5 filósofos (1 sesión)  
 ✅ **Práctica 3:** Hormigas / Interbloqueo ()
 
