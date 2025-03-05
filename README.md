@@ -37,14 +37,14 @@ Si prefieres usar **BlueJ** para ejecutar las prácticas, sigue estos pasos:
 3. Compilar el código:
 - Haz clic derecho sobre la clase y selecciona Compilar.
 - O usa el atajo de teclado:
--   **Windows/Linux:** Ctrl + K
--   **macOS:** Cmd + K
+    - **Windows/Linux:** Ctrl + K
+    - **macOS:** Cmd + K
 
 4. Ejecutar el programa:
 5. Haz clic derecho sobre la clase y selecciona void main(args).
 6. O usa el atajo de teclado:
-- **Windows/Linux:** Ctrl + R
-- **macOS:** Cmd + R
+    - **Windows/Linux:** Ctrl + R
+    - **macOS:** Cmd + R
 
 📌 **Nota:** 
 - Si alguna práctica requiere configuración adicional, se incluirán instrucciones específicas en su respectivo directorio.
