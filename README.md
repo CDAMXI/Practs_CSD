@@ -4,10 +4,10 @@ Este repositorio contiene todas las prácticas de JAVA relacionadas con la asign
 
 🔗 **Repositorio:** [Practs_CSD](https://github.com/CDAMXI/Practs_CSD.git)  
 
-## 📂 Prácticas Incluidas  
-✅ **Práctica 1:** Piscina  (2 sesiones)
-✅ **Práctica 2:** Problema de los 5 filósofos (1 sesión)  
-✅ **Práctica 3:** Hormigas / Interbloqueo ()
+## 📂 Prácticas Incluidas
+- ✅ **Práctica 1:** Piscina  (2 sesiones)
+- ✅ **Práctica 2:** Problema de los 5 filósofos (1 sesión)
+- ✅ **Práctica 3:** Hormigas / Interbloqueo ()
 
 ## 🚀 Guía Rápida para Ejecutar los Proyectos  
 
