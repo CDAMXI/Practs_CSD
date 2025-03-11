@@ -1,3 +1,4 @@
+import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
 /**
  * Native monitor based Terrain
@@ -7,41 +8,47 @@ import java.util.concurrent.locks.*;
  */
 public class Terrain1 implements Terrain {
     Viewer v;
-    Lock lock;
-    Condition cond;
+    ReentrantLock lock;
+    Condition occupied;
     
     public  Terrain1 (int t, int ants, int movs, String msg) {
-        v = new Viewer(t,ants,movs,msg);
+        v=new Viewer(t,ants,movs,"1");
         lock = new ReentrantLock();
-        cond = lock.newCondition();
+        occupied = lock.newCondition();
+        
+        for(int i = 0; i < ants; i++){
+            new Ant(i,this,movs).start();
+        }
     }
     
-    public void hi(int a){
+    public synchronized void hi(int a){
         try{
             lock.lock();
             v.hi(a);
-        }finally{lock.unlock();}
+        }catch(Exception e){e.printStackTrace();}
+        finally{lock.unlock();}
     }
     
-    public void bye(int a){
+    public synchronized void bye(int a){
         try{
             lock.lock();
-            cond.signalAll();
             v.bye(a);
-        }finally{lock.unlock();}
+        }catch(Exception e){e.printStackTrace();}
+        finally{lock.unlock();}
     }
     
-    public void move(int a) throws InterruptedException {
+    public synchronized void move(int a) throws InterruptedException {
         try{
             lock.lock();
             v.turn(a);
-            Pos dest = v.dest(a); 
+            Pos dest=v.dest(a); 
             while (v.occupied(dest)){
-                cond.await();
+                occupied.await();
                 v.retry(a);
             }
+            
             v.go(a);
-            cond.signalAll();
-        }finally{lock.unlock();}
+        } catch(Exception e){e.printStackTrace();}
+        finally{lock.unlock();}
     }
 }

@@ -7,7 +7,7 @@
  */
 
 public interface Terrain {
-    void hi(int a);
-    void bye (int a);    
-    void move (int a) throws InterruptedException;
+    void     hi      (int a);
+    void     bye     (int a);    
+    void     move    (int a) throws InterruptedException;
 }

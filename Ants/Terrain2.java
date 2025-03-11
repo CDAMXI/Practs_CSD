@@ -1,3 +1,4 @@
+import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
 /**
  * Native monitor based Terrain
@@ -7,49 +8,57 @@ import java.util.concurrent.locks.*;
  */
 public class Terrain2 implements Terrain {
     Viewer v;
-    Lock lock;
-    Condition[][] cond;
+    ReentrantLock lock;
+    Condition[] occupied;
+    
+    private int grid_size;
     
     public  Terrain2 (int t, int ants, int movs, String msg) {
         v=new Viewer(t,ants,movs,"2");
         lock = new ReentrantLock();
+        grid_size = t;
         
-        cond = new Condition[t][t];
-        for (int i = 0; i < t; i++) {
-            for (int j = 0; j < t; j++) {
-                cond[i][j] = lock.newCondition();
+        occupied = new Condition[grid_size * grid_size];
+        
+        for(int i = 0; i < grid_size; i++){
+            for(int j = 0; j < grid_size; j++){
+                occupied[j + i*grid_size] = lock.newCondition();
             }
         }
+        
+        for(int i = 0; i < ants; i++){new Ant(i,this,movs).start();}
     }
     
-    public void hi(int a){
+    public synchronized void hi(int a){
         try{
             lock.lock();
             v.hi(a);
-        } finally{lock.unlock();}
+        }catch(Exception e){e.printStackTrace();}
+        finally{lock.unlock();}
     }
     
-    public void bye(int a){
+    public synchronized void bye(int a){
         try{
             lock.lock();
-            Pos p = v.getPos(a);
-            cond[p.x][p.y].signalAll();
             v.bye(a);
-        } finally{lock.unlock();}
+        }catch(Exception e){e.printStackTrace();}
+        finally{lock.unlock();}
     }
     
-    public void move(int a) throws InterruptedException {
+    public synchronized void move(int a) throws InterruptedException {
+        lock.lock();
         try{
-            lock.lock();
             v.turn(a);
-            Pos p = v.getPos(a);
-            Pos dest = v.dest(a);
+            Pos dest=v.dest(a); 
+            Pos currentPos = v.getPos(a);
             while (v.occupied(dest)){
-                cond[dest.x][dest.y].await();
+                occupied[dest.x*grid_size + dest.y].await();
                 v.retry(a);
             }
+            
             v.go(a);
-            cond[p.x][p.y].signalAll();
-        } finally{lock.unlock();}
+            occupied[currentPos.x * grid_size + currentPos.y].signalAll();
+        } catch(Exception e){e.printStackTrace();}
+        finally{lock.unlock();}
     }
 }

@@ -8,54 +8,60 @@ import java.util.concurrent.locks.*;
  */
 public class Terrain3 implements Terrain {
     Viewer v;
-    Lock lock;
-    Condition[][] cond;
+    ReentrantLock lock;
+    Condition[][] notAvailable;
+    long defaultTimeoutMs = 1000;
+    TimeUnit defaultTimeUnit = TimeUnit.MILLISECONDS;
     
     
     public  Terrain3 (int t, int ants, int movs, String msg) {
-        v = new Viewer(t,ants,movs,"3");
+        v=new Viewer(t,ants,movs,"3");
         lock = new ReentrantLock();
         
-        cond = new Condition[t][t]; //Tama�o del escenario
+        notAvailable = new Condition[t][t]; //Tama�o del escenario
         
         for(int i = 0; i < t; i++){ //Crear los locks de cada celda del escenario
             for(int j = 0; j < t; j++){
-                cond[i][j] = lock.newCondition();
+                notAvailable[i][j] = lock.newCondition();
             }
         }
+        
+        for(int i = 0; i < ants; i++){new Ant(i,this,movs).start();}
     }
     
-    public void hi(int a){
+    public synchronized void hi(int a){
         try{
             lock.lock();
             v.hi(a);
-        } finally{lock.unlock();}
+        }catch(Exception e){e.printStackTrace();}
+        finally{lock.unlock();}
     }
     
-    public void bye(int a){
+    public synchronized void bye(int a){
         try{
             lock.lock();
-            Pos p = v.getPos(a);
-            cond[p.x][p.y].signalAll();
             v.bye(a);
-        } finally{lock.unlock();}
+        }catch(Exception e){e.printStackTrace();}
+        finally{lock.unlock();}
     }
     
-    public void move(int a) throws InterruptedException {
+    public synchronized void move(int a) throws InterruptedException {
         try{
             lock.lock();
             v.turn(a);
-            Pos p = v.getPos(a);
             Pos dest=v.dest(a); 
+            Pos currentPos = v.getPos(a);
             while (v.occupied(dest)){
-                if(!cond[dest.x][dest.y].await(300, TimeUnit.MILLISECONDS)){
+                if(!notAvailable[dest.x][dest.y].await(defaultTimeoutMs, defaultTimeUnit)){
                     v.chgDir(a);
                     dest = v.dest(a);
                 }
+                v.retry(a);
             }
             v.go(a);
-            cond[p.x][p.y].signal();
-        } catch(InterruptedException e){e.printStackTrace();}
+            
+            notAvailable[currentPos.x][currentPos.y].signal();
+        } catch(Exception e){e.printStackTrace();}
         finally{lock.unlock();}
     }
 }
