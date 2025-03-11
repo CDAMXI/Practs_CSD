@@ -73,7 +73,6 @@ public class Viewer extends Panel {
         Matrix mat= new Matrix(T,A);
         for (int i=0; i<=idx; i++) {
             Op op=ops[i];
-            String s;
             try {
             if (Class.forName("Hi"    ).isInstance(op)) {mat.opHi     (op.a,((Hi)op).p);}
             if (Class.forName("Bye"   ).isInstance(op)) {mat.opBye     (op.a);}
