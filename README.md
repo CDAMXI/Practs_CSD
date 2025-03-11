@@ -4,10 +4,10 @@ Este repositorio contiene todas las prácticas de JAVA relacionadas con la asign
 
 🔗 **Repositorio:** [Practs_CSD](https://github.com/CDAMXI/Practs_CSD.git)  
 
-## 📂 Prácticas Incluidas  
-✅ **Práctica 1:** Piscina  (2 sesiones)
-✅ **Práctica 2:** Problema de los 5 filósofos ()  
-✅ **Práctica 3:** Hormigas / Interbloqueo ()
+## 📂 Prácticas Incluidas
+- ✅ **Práctica 1:** Piscina  (2 sesiones)
+- ✅ **Práctica 2:** Problema de los 5 filósofos (1 sesión)
+- ✅ **Práctica 3:** Hormigas / Interbloqueo ()
 
 ## 🚀 Guía Rápida para Ejecutar los Proyectos  
 
@@ -24,13 +24,27 @@ javac NombreDelArchivo.java
 ```bash
 java NombreDelArchivo
 ```
-### 4️⃣ Usar un IDE (Opcional)
+### 4️⃣ Usar un IDE (Distinto a BlueJ)
 Si usas un IDE como IntelliJ IDEA o Eclipse:
 - Importa el proyecto como un proyecto Java.
 - Asegúrate de que la configuración del SDK de Java esté correctamente establecida.
 - Ejecuta las clases con main() directamente desde el IDE.
 
+### 🖥️ Usar BlueJ (Opcional)
+Si prefieres usar **BlueJ** para ejecutar las prácticas, sigue estos pasos:
+1. Crear un nuevo proyecto en BlueJ.
+2. Copiar y pegar el código de los archivos .java del repositorio en las clases correspondientes que crees en BlueJ.
+3. Compilar el código:
+- Haz clic derecho sobre la clase y selecciona Compilar.
+- O usa el atajo de teclado:
+    - **Windows/Linux:** Ctrl + K
+    - **macOS:** Cmd + K
+
+4. Ejecutar el programa:
+5. Haz clic derecho sobre la clase y selecciona void main(args).
+6. O usa el atajo de teclado:
+    - **Windows/Linux:** Ctrl + R
+    - **macOS:** Cmd + R
+
 📌 **Nota:** 
 - Si alguna práctica requiere configuración adicional, se incluirán instrucciones específicas en su respectivo directorio.
-
-⚠️ **Importante:** No se podrá usar BlueJ directamente, ya que este IDE maneja los archivos de manera distinta. BlueJ genera archivos ```.class``` en su estructura de carpetas automáticamente, mientras que en este repositorio solo se incluyen los archivos ```.java```. Para ejecutar las prácticas correctamente, se recomienda utilizar IntelliJ IDEA, Eclipse, VSCode o la línea de comandos.
