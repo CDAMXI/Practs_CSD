@@ -6,10 +6,8 @@
  * @version 2021
  */
 import java.awt.*;
-import java.awt.font.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.concurrent.*;
 
 public class Viewer extends Panel {
     final Font bold = new Font("Courier",Font.BOLD ,40);

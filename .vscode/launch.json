@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Ants",
+            "request": "launch",
+            "mainClass": "Ants",
+            "projectName": "Practs_CSD_435745b4"
+        },
+        {
+            "type": "java",
             "name": "PPhilo",
             "request": "launch",
             "mainClass": "PPhilo",
