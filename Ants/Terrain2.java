@@ -1,3 +1,5 @@
+package Ants;
+
 import java.util.concurrent.locks.*;
 /**
  * Native monitor based Terrain

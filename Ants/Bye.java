@@ -1,3 +1,5 @@
+package Ants;
+
 
 /**
  * Ant leaves Terrain
