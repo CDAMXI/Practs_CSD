@@ -1,4 +1,3 @@
-
 /**
  * New ant arrives to Terrain
  * 

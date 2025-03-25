@@ -1,4 +1,3 @@
-
 /**
  * Operations that Terrain offers to an Ant
  * 

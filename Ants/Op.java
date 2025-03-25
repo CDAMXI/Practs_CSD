@@ -1,4 +1,3 @@
-
 /**
  * Base class for simulation ops
  * 

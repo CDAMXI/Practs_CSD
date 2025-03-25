@@ -1,3 +1,4 @@
+import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
 /**
  * Native monitor based Terrain
@@ -5,6 +6,7 @@ import java.util.concurrent.locks.*;
  * @author CSD Juansa Sendra
  * @version 2021
  */
+@SuppressWarnings("unused")
 public class Terrain1 implements Terrain {
     Viewer v;
     ReentrantLock lock;

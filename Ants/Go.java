@@ -1,4 +1,3 @@
-
 /**
  * Ant completes movement
  * 

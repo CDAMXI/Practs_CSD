@@ -1,4 +1,3 @@
-
 /**
  * Direction of movement
  * 

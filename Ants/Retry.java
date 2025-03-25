@@ -1,4 +1,3 @@
-
 /**
  * Ant retries a movement
  * 
