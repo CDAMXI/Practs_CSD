@@ -8,8 +8,9 @@ package Ants;
  */
 public class Ants{
      static int readArg(String[] args, int i, int def, int min, int max) {
-        if (i>=args.length) return def;
-        int r = Integer.parseInt(args[i]); return r<min? min: r>max? max: r;
+        if (i>=args.length){return def;} 
+        int r = Integer.parseInt(args[i]);
+        return r < min ? min: r > max ? max: r;
     }
     /* ARGUMENTS
      * type of Terrain (0..3, default 0)
