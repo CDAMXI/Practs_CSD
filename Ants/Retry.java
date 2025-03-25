@@ -1,4 +1,3 @@
-package Ants;
 
 /**
  * Ant retries a movement
@@ -7,6 +6,6 @@ package Ants;
  * @version 2021
  */
 public class Retry extends Op {       
-    public Retry(int a){super(a);}
+    public Retry(int a)         {super(a);}
     public String toString() {return super.toString()+" Retry";}
 }

@@ -1,4 +1,3 @@
-package Ants;
 
 /**
  * Ant completes movement
@@ -7,6 +6,6 @@ package Ants;
  * @version 2021
  */
 public class Go extends Op {       
-    public Go(int a) {super(a);}
+        public Go(int a) {super(a);}
     public String toString() {return super.toString()+" Go";}
 }

@@ -1,4 +1,3 @@
-package Ants;
 
 /**
  * Write a description of class Ant here.

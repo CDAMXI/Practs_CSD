@@ -1,6 +1,3 @@
-package Ants;
-
-import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
 /**
  * Native monitor based Terrain
@@ -8,48 +5,37 @@ import java.util.concurrent.locks.*;
  * @author CSD Juansa Sendra
  * @version 2021
  */
-@SuppressWarnings("unused")
 public class Terrain1 implements Terrain {
     Viewer v;
-    ReentrantLock lock;
-    Condition occupied;
-    
+    Lock l;
+    Condition cond;
     public  Terrain1 (int t, int ants, int movs, String msg) {
-        v=new Viewer(t,ants,movs,"1");
-        lock = new ReentrantLock();
-        occupied = lock.newCondition();
+        v=new Viewer(t,ants,movs,msg);
+        l = new ReentrantLock();
+        cond = l.newCondition();
+    }
+    
+    public synchronized void     hi      (int a) {
+        l.lock();
+        try{v.hi(a); } finally{l.unlock();}  
+    }
+    
+    public synchronized void     bye     (int a) {
+        l.lock();
+        try{cond.signalAll();}
+        finally{l.unlock();}        
+    }
+    public synchronized void     move    (int a) throws InterruptedException {
+        l.lock();
+        try{
+            v.turn(a); Pos dest=v.dest(a);
         
-        for(int i = 0; i < ants; i++){new Ant(i,this,movs).start();}
-    }
-    
-    public synchronized void hi(int a){
-        try{
-            lock.lock();
-            v.hi(a);
-        }catch(Exception e){e.printStackTrace();}
-        finally{lock.unlock();}
-    }
-    
-    public synchronized void bye(int a){
-        try{
-            lock.lock();
-            v.bye(a);
-        }catch(Exception e){e.printStackTrace();}
-        finally{lock.unlock();}
-    }
-    
-    public synchronized void move(int a) throws InterruptedException {
-        try{
-            lock.lock();
-            v.turn(a);
-            Pos dest=v.dest(a); 
-            while (v.occupied(dest)){
-                occupied.await();
-                v.retry(a);
-            }
-            
-            v.go(a);
-        } catch(Exception e){e.printStackTrace();}
-        finally{lock.unlock();}
+         
+            while (v.occupied(dest)) {cond.await(); v.retry(a);}
+            v.go(a); notifyAll();
+        }
+        finally{
+            l.unlock();
+        }
     }
 }

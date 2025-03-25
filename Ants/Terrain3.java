@@ -1,7 +1,5 @@
-package Ants;
-
-import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
+import java.util.concurrent.TimeUnit;
 /**
  * Native monitor based Terrain
  * 
@@ -10,58 +8,56 @@ import java.util.concurrent.locks.*;
  */
 public class Terrain3 implements Terrain {
     Viewer v;
-    ReentrantLock lock;
-    Condition[][] notAvailable;
-    long defaultTimeoutMs = 1000;
-    TimeUnit defaultTimeUnit = TimeUnit.MILLISECONDS;
-    
-    
+    Lock l;
+    Condition [][] cond;
     public  Terrain3 (int t, int ants, int movs, String msg) {
-        v=new Viewer(t,ants,movs,"3");
-        lock = new ReentrantLock();
-        
-        notAvailable = new Condition[t][t]; //Tama�o del escenario
-        
-        for(int i = 0; i < t; i++){ //Crear los locks de cada celda del escenario
-            for(int j = 0; j < t; j++){notAvailable[i][j] = lock.newCondition();}
+        v=new Viewer(t,ants,movs,msg);
+        l = new ReentrantLock();
+        cond = new Condition [t][t];
+        for(int i = 0; i < t; i++){
+            for(int j = 0; j < t; i++){
+                cond [i][j] = l.newCondition();
+            }
         }
-        
-        for(int i = 0; i < ants; i++){new Ant(i,this,movs).start();}
     }
     
-    public synchronized void hi(int a){
+    public synchronized void     hi      (int a) {
+        l.lock();
         try{
-            lock.lock();
-            v.hi(a);
-        }catch(Exception e){e.printStackTrace();}
-        finally{lock.unlock();}
+            v.hi(a); 
+        } finally{
+            l.unlock();
+        }  
     }
     
-    public synchronized void bye(int a){
+    public synchronized void     bye     (int a) {
+        Pos p = v.getPos(a);
+        l.lock();
         try{
-            lock.lock();
             v.bye(a);
-        }catch(Exception e){e.printStackTrace();}
-        finally{lock.unlock();}
+            cond [p.x][p.y].signalAll();        
+        }finally{
+            l.unlock();
+        }        
     }
-    
-    public synchronized void move(int a) throws InterruptedException {
+    public synchronized void     move    (int a) throws InterruptedException {
+        Pos p = v.getPos(a);
+        l.lock();
         try{
-            lock.lock();
-            v.turn(a);
-            Pos dest=v.dest(a); 
-            Pos currentPos = v.getPos(a);
-            while (v.occupied(dest)){
-                if(!notAvailable[dest.x][dest.y].await(defaultTimeoutMs, defaultTimeUnit)){
+            v.turn(a); Pos dest=v.dest(a);
+            while (v.occupied(dest)) {
+                if(cond [dest.x][dest.y].await(300, TimeUnit.MILLISECONDS)){
+                   v.retry(a); 
+                }else{
                     v.chgDir(a);
                     dest = v.dest(a);
+                    v.retry(a);
                 }
-                v.retry(a);
             }
-            v.go(a);
-            
-            notAvailable[currentPos.x][currentPos.y].signal();
-        } catch(Exception e){e.printStackTrace();}
-        finally{lock.unlock();}
+            v.go(a); cond [p.x][p.y].signalAll();
+        }
+        finally{
+            l.unlock();
+        }
     }
 }
