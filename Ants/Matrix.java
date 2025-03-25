@@ -1,3 +1,5 @@
+package Ants;
+
 
 /**
  * State of cells and Ants

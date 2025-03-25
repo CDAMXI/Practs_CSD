@@ -1,3 +1,5 @@
+package Ants;
+
 
 /**
  * Operations that Terrain offers to an Ant
