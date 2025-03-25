@@ -1,3 +1,5 @@
+package Ants;
+
 /**
  * 2d position
  * 

@@ -1,3 +1,5 @@
+package Ants;
+
 /**
  * Ant turns to a Dir
  * 

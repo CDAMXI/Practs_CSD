@@ -1,3 +1,5 @@
+package Ants;
+
 /**
  * New ant arrives to Terrain
  * 
