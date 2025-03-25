@@ -6,8 +6,7 @@ package Ants;
  * @author CSD Juansa Sendra
  * @version 2021
  */
-public class Ants
-{
+public class Ants{
      static int readArg(String[] args, int i, int def, int min, int max) {
         if (i>=args.length) return def;
         int r = Integer.parseInt(args[i]); return r<min? min: r>max? max: r;
