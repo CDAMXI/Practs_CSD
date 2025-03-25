@@ -21,9 +21,7 @@ public class Terrain3 implements Terrain {
         notAvailable = new Condition[t][t]; //Tama�o del escenario
         
         for(int i = 0; i < t; i++){ //Crear los locks de cada celda del escenario
-            for(int j = 0; j < t; j++){
-                notAvailable[i][j] = lock.newCondition();
-            }
+            for(int j = 0; j < t; j++){notAvailable[i][j] = lock.newCondition();}
         }
         
         for(int i = 0; i < ants; i++){new Ant(i,this,movs).start();}

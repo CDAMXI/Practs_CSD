@@ -20,9 +20,7 @@ public class Terrain2 implements Terrain {
         occupied = new Condition[grid_size * grid_size];
         
         for(int i = 0; i < grid_size; i++){
-            for(int j = 0; j < grid_size; j++){
-                occupied[j + i*grid_size] = lock.newCondition();
-            }
+            for(int j = 0; j < grid_size; j++){occupied[j + i*grid_size] = lock.newCondition();}
         }
         
         for(int i = 0; i < ants; i++){new Ant(i,this,movs).start();}

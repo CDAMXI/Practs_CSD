@@ -15,9 +15,7 @@ public class Terrain1 implements Terrain {
         lock = new ReentrantLock();
         occupied = lock.newCondition();
         
-        for(int i = 0; i < ants; i++){
-            new Ant(i,this,movs).start();
-        }
+        for(int i = 0; i < ants; i++){new Ant(i,this,movs).start();}
     }
     
     public synchronized void hi(int a){
